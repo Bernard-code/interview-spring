@@ -5,6 +5,7 @@ import com.bernard.interview.payload.QuestionDTO;
 import com.bernard.interview.repository.QuestionRepository;
 import com.bernard.interview.service.QuestionService;
 import com.bernard.interview.exception.ResourceNotFoundException;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +24,15 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public QuestionDTO createQuestion(QuestionDTO questionDTO) {
-        Question question = mapDTOToEntity(questionDTO);
-        Question newquestion = questionRepository.save(question);
-        return mapEntityToDTO(newquestion);
+//        Question question = mapDTOToEntity(questionDTO);
+        Question question = new Question();
+        question.setName(questionDTO.getName());
+        question.setAnswer(questionDTO.getAnswer());
+        question.setPosition(questionDTO.getPosition());
+        question.setCategory(questionDTO.getCategory());
+
+        Question newQuestion = questionRepository.save(question);
+        return mapEntityToDTO(newQuestion);
     }
 
     @Override
@@ -41,7 +48,10 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public QuestionDTO updateQuestion(long id, QuestionDTO questionDTO) {
         Question question = getRawQuestionById(id);
-        question.setTitle(questionDTO.getTitle());
+        question.setName(questionDTO.getName());
+        question.setAnswer(questionDTO.getAnswer());
+        question.setPosition(questionDTO.getPosition());
+        question.setCategory(questionDTO.getCategory());
         Question updateQuestion = questionRepository.save(question);
         return mapEntityToDTO(updateQuestion);
     }

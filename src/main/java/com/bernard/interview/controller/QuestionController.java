@@ -40,6 +40,6 @@ public class QuestionController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteQuestion(@PathVariable long id) {
         questionService.deleteQuestion(id);
-        return new ResponseEntity<>("Question deleted", HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

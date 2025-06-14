@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "questions")
-public class Question {
+@Table(name = "categories")
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,12 +19,6 @@ public class Question {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "answer", nullable = false, length = 4000)
-    private String answer;
-
-    @Column(name = "position", nullable = true)
+    @Column(name = "position", nullable = false)
     private int position;
-
-    @Column(name = "category", nullable = true)
-    private int category;
 }
