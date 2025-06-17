@@ -23,8 +23,15 @@ public class CategoryController {
     }
 
     @GetMapping
-    public List<CategoryDTO> getCategories() {
-        return categoryService.getCategories();
+    public ResponseEntity<List<CategoryDTO>> getCategories() {
+        try {
+            List<CategoryDTO> categories = categoryService.getCategories();
+            return new ResponseEntity<>(categories, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+//    public List<CategoryDTO> getCategories() {
+//        return categoryService.getCategories();
     }
 
     @GetMapping("/{id}")

@@ -18,7 +18,7 @@ public class DevCorsConfiguration implements WebMvcConfigurer {
         return new DevCorsConfiguration() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
+                registry.addMapping("/**") // allow all endpoints
                         .allowedOrigins("http://localhost:4200") // Angular dev server
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
