@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-//@Profile("development")
 @Configuration
 public class DevCorsConfiguration implements WebMvcConfigurer {
 
@@ -18,8 +17,8 @@ public class DevCorsConfiguration implements WebMvcConfigurer {
         return new DevCorsConfiguration() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // allow all endpoints
-                        .allowedOrigins("http://localhost:4200") // Angular dev server
+                registry.addMapping("/**")
+                        .allowedOrigins("http://localhost:4200", "https://bernard-code.github.io")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
